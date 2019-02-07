@@ -54,10 +54,8 @@ const myArray = [5, 2, "a", 4, "7", true, "b", "c", 7, "8", false];
 console.log(sumArray(myArray)); // 33
 
 // #3
-
-// We need to use bracket notation in order to set the attribute name for our object dynamically.
+// Use bracket notation in order to set the attribute name for our object dynamically.
 // (since we shouldn't hardcode 'hi' in {'hi' : 1})
-
 function countingWords(arr) {
   let result = {};
 
@@ -90,7 +88,6 @@ const testArray3 = [
 console.log(countingWords(testArray3)); // { hi: 3, hello: 2, world: 1, greetings: 1 }
 
 // #4
-
 function createAnimals(animalData) {
   let animalFactory = {};
 
@@ -98,8 +95,7 @@ function createAnimals(animalData) {
     // Create an empty object for key: i + 1
     animalFactory[i + 1] = {};
     for (let j = 0; j < animalData[i].length; j++) {
-      let property = testArray4[i][j].property; // property name
-      let assign = testArray4[i][j].assign; // property value
+      const { property, assign } = testArray4[i][j]; // Destructuring
 
       // 1st bracket gets object for key: i+1
       // 2nd bracket lets you create attribute name and set a value to it
