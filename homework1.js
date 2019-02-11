@@ -27,6 +27,8 @@ const arr = ["a", "e", "i", "o", "u"];
 console.log(replaceLetters("node.js", arr)); // n-d-.js
 
 // #2
+// *** You can use parseInt() to ensure that "true" isn't converted into 1
+
 function sumArray(mixedArray) {
   let result = 0;
 
@@ -38,11 +40,10 @@ function sumArray(mixedArray) {
     let currentElement = mixedArray[i];
 
     let isNumber = typeof currentElement == "number";
-    let isString = typeof currentElement == "string";
 
     if (isNumber) {
       result += currentElement;
-    } else if (isString && !isNaN(Number(currentElement))) {
+    } else if (!isNaN(parseInt(currentElement))) {
       result += Number(currentElement);
     }
   }
