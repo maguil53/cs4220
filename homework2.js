@@ -5,14 +5,14 @@ const print = function({ name = "", leader = "", members = "" }) {
   if (members.length === 1) {
     output += `${members[0]}\n`;
   } else if (members.length > 1) {
-    // Append all team members EXCEPT last
+    // Append all team members EXCEPT last.
     for (let i = 0; i < members.length - 1; i++) {
       output += `${members[i]}, `;
     }
 
     output += `and ${members[members.length - 1]}\n`; // Append last team member
   } else {
-    output += "\n"; // If no members were provided
+    output += "\n"; // If no members were provided.
   }
   console.log(output);
 };
@@ -36,17 +36,16 @@ class GroceryList {
   constructor(groceryObjects = []) {
     this.groceryObjects = groceryObjects;
     this.groceries = {};
-    this.total = 0; // If total is 0, it means user has not called addTotal() yet.
+    this.total = 0;
 
     this.groceryObjects.forEach(item => this.addItem(item));
   }
 
   addItem(groceryObject) {
     const { item, quantity = 1, price = "n/a" } = groceryObject;
+    const itemExists = this.groceries[item.toLowerCase()] != undefined;
 
-    if (this.groceries[item.toLowerCase()]) {
-      // If item exists, add to the final quantity.
-
+    if (itemExists) {
       this.groceries[item].finalQuantity += parseInt(quantity);
       if (price !== "n/a") {
         this.groceries[item].finalPrice = price; // Update price.
@@ -62,7 +61,7 @@ class GroceryList {
   }
 
   removeItem(item) {
-    const product = item.toLowerCase(); // Handles cases like "pIZza"
+    const product = item.toLowerCase();
     const quantity = this.groceries[product].finalQuantity;
 
     if (quantity < 2) {
@@ -75,7 +74,9 @@ class GroceryList {
   }
 
   addPrice(item, price) {
-    if (this.groceries[item.toLowerCase()]) {
+    const itemExists = this.groceries[item.toLowerCase()] != undefined;
+
+    if (itemExists) {
       this.groceries[item.toLowerCase()].finalPrice = price;
     } else {
       console.log("Sorry, that item doesn't exist. Please add the item first.");
@@ -87,6 +88,7 @@ class GroceryList {
   addTotal() {
     for (let property in this.groceries) {
       let price = this.groceries[property].finalPrice;
+      // Don't add price of items if their cost was never specified.
       if (price == "n/a") {
         continue;
       }
