@@ -29,13 +29,20 @@ iterateNumbers([1, 2, 3, 5, 8, 13, 21]); // Total: 53
 
 const makePriorityList = todoList => {
   let hasPriority = false;
+  let timeInMilliSeconds = 0;
   const priorityList = [];
   const missingPriorities = [];
 
   for (let i = 0; i < todoList.length; i++) {
-    checkPriority(todoList[i], (error, result) => {
-      hasPriority = error ? false : true;
+    const { name, priority } = todoList[i];
+    hasPriority = priority == null ? false : true;
 
+    if (hasPriority) {
+      timeInMilliSeconds += 90;
+      todoList[i].priority *= 10; // So priorities are displayed like the HW example
+    }
+
+    checkPriority(todoList[i], (error, result) => {
       if (hasPriority) {
         priorityList.push(result);
       } else {
@@ -44,21 +51,16 @@ const makePriorityList = todoList => {
     });
   }
 
-  // These will be called right before your loop finishes (NOT WHAT WE WANT)
-  // SO WE MIGHT HAVE TO HAVE A "console.log()" INSIDE A CALLBACK!
-
-  // Should put this in a callback
-
-  // ********************************************************************
-  // Temporary Fix
-  // The reason why you're printing EMPTY lists is because "console.log()" 's
-  // are being executed before your loop is finished traversing through the list!
   setTimeout(() => {
+    priorityList.sort(function(a, b) {
+      return b.priority - a.priority;
+    });
+
     console.log("Priority:");
     console.log(priorityList);
     console.log("Missing Priority:");
     console.log(missingPriorities);
-  }, 2000);
+  }, timeInMilliSeconds + 1);
 };
 
 const checkPriority = (todo, callback) => {
