@@ -29,38 +29,33 @@ iterateNumbers([1, 2, 3, 5, 8, 13, 21]); // Total: 53
 
 const makePriorityList = todoList => {
   let hasPriority = false;
-  let timeInMilliSeconds = 0;
   const priorityList = [];
   const missingPriorities = [];
 
   for (let i = 0; i < todoList.length; i++) {
-    const { name, priority } = todoList[i];
-    hasPriority = priority == null ? false : true;
-
-    if (hasPriority) {
-      timeInMilliSeconds += 90;
-      todoList[i].priority *= 10; // So priorities are displayed like the HW example
-    }
+    hasPriority = todoList[i].priority != null ? true : false;
 
     checkPriority(todoList[i], (error, result) => {
       if (hasPriority) {
+        todoList[i].priority *= 10; // So priorities are displayed like the HW example
         priorityList.push(result);
       } else {
         missingPriorities.push(result);
       }
+
+      // Callback prints lists only if we're done iterating through original.
+      if (i == todoList.length - 1) {
+        // Sort Priority List based on priority value.
+        priorityList.sort(function(a, b) {
+          return b.priority - a.priority;
+        });
+        console.log("Priority");
+        console.log(priorityList);
+        console.log("Missing Priority:");
+        console.log(missingPriorities);
+      }
     });
   }
-
-  setTimeout(() => {
-    priorityList.sort(function(a, b) {
-      return b.priority - a.priority;
-    });
-
-    console.log("Priority:");
-    console.log(priorityList);
-    console.log("Missing Priority:");
-    console.log(missingPriorities);
-  }, timeInMilliSeconds + 1);
 };
 
 const checkPriority = (todo, callback) => {
