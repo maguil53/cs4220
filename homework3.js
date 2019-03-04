@@ -37,7 +37,7 @@ const makePriorityList = todoList => {
 
     checkPriority(todoList[i], (error, result) => {
       if (hasPriority) {
-        todoList[i].priority *= 10; // So priorities are displayed like the HW example
+        todoList[i].priority *= 10; // So priorities are displayed like expected results.
         priorityList.push(result);
       } else {
         missingPriorities.push(result);
@@ -49,10 +49,8 @@ const makePriorityList = todoList => {
         priorityList.sort(function(a, b) {
           return b.priority - a.priority;
         });
-        console.log("Priority");
-        console.log(priorityList);
-        console.log("Missing Priority:");
-        console.log(missingPriorities);
+        console.log("Priority\n", priorityList);
+        console.log("Missing Priority\n", missingPriorities);
       }
     });
   }
