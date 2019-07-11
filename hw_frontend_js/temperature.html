@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="temperature.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="thermometer2.png" width="50" height="150" alt="Thermometer" />
+        <h1>Temperature Converter</h1>
+      </div>
+
+      <div class="body">
+        <div class="input">
+          <form autocomplete="off">
+            Enter the temperature to be converted:<br />
+            <input type="text" id="userInput" value="" onkeyup="convert()" />
+            <br />
+
+            <input
+              type="radio"
+              name="degree"
+              id="fahrenheit"
+              value="Fahrenheit"
+            />
+            <label for="fahrenheit" id="label1"></label>
+            Fahrenheit<br />
+
+            <input type="radio" name="degree" id="celsius" value="Celsius" />
+            <label for="celsius" id="label2"></label>
+            Celsius<br />
+
+            <input type="submit" value="Convert" />
+          </form>
+        </div>
+
+        <div class="output">
+          <div class="screen">
+            <div id="result" style="font-size: 30px">Welcome!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add JS file here -->
+    <script src="temperature.js"></script>
+  </body>
+</html>

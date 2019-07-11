@@ -18,7 +18,7 @@ async function draw(shuffle = false, count = 1) {
   console.log(`YOU HAVE DRAWN ${result.cards.length} CARDS`);
 
   const drawAnother = await anotherCardPrompt();
-  console.log(drawAnother);
+  
 
   // Cards the player has so far
   let cardsToDisplay = result.cards;

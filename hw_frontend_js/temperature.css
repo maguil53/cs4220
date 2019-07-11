@@ -1,0 +1,151 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  /* Makes sure the border isn't added to the element's size */
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: #2196f3;
+}
+
+.container {
+  display: grid;
+  /* 
+    Expands our container (vertically) so that our grid-container fills up entire HTML page
+  */
+  height: 100vh;
+  /* 
+    Specifying we want 3 columns.
+    Columns 1 & 3 will be left alone so that the 2nd column 
+    contains the centered content.
+  */
+  grid-template-columns: 40px auto 40px;
+  /* 
+    We want header to contain 40% of page 
+    and we want body to contain 60% of page.
+  */
+  grid-template-rows: 40% 60%;
+}
+
+.header {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  /* Used to display Header elements horizontally */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+h1 {
+  font-size: 50px;
+  margin-left: 50px;
+}
+
+img {
+  margin-top: 10px;
+}
+
+.body {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  /* 
+    Not specifying "end" because there is no 3rd column, 
+    therefore it'll just stretch to the bottom
+  */
+  grid-row-start: 2;
+
+  /* 
+    Used for both .input & .output. Displays them Horizontally.
+  */
+  display: flex;
+  flex-direction: row;
+}
+
+.input {
+  height: 100%;
+  width: 100%;
+  padding-left: 25px;
+  transition: 0.1s all linear;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 8px 0;
+}
+
+input[type="submit"]:hover {
+  background-color: #d6d6d6;
+  transition: 0.2s all linear;
+}
+
+input[type="submit"]:active {
+  background-color: #c9c9c9;
+  transition: 0.2s all linear;
+}
+
+input[type="radio"] {
+  position: relative;
+  display: none;
+}
+
+label {
+  display: inline-block;
+  /* Going to use a transition to smoothly increase border size */
+  border: 0.1px solid black;
+  background-color: white;
+  border-radius: 50%;
+  /* Makes label into a perfect circle */
+  height: 12px;
+  width: 12px;
+  /* Any style changes made to our labels (circles) will take 0.1s to complete */
+  transition: 0.1s all linear;
+}
+
+.output {
+  height: 100%;
+  width: 100%;
+  /* 
+    flexbox used to center content Vertically.
+    text-align style centers content Horizontally.
+  */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.screen {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 8px;
+  height: 80%;
+  width: 80%;
+  text-align: center;
+  /* 
+    flexbox used to center content Vertically.
+    text-align style centers content Horizontally.
+  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
